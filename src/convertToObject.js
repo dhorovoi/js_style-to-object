@@ -11,8 +11,13 @@ function convertToObject(sourceString) {
   sourceString.split(';').forEach((css) => {
     const [key, value] = css.split(':');
 
-    if (key && value) {
-      result[key.trim()] = value.trim();
+    if (typeof key === 'string' && typeof value === 'string') {
+      const trimKey = key.trim();
+      const trimValue = value.trim();
+
+      if (trimKey !== '' && trimValue !== '') {
+        result[trimKey] = trimValue;
+      }
     }
   });
 
